@@ -14,10 +14,25 @@ $(document).keyup(function(e){
         $('#keyboard-lower-container').css({'display':'block'})
 }     
 })
-var span='span.id'
 
-$('.key-row').keypress(function(e){
-    if(e.keyCode==span)
-        $( span.id).toggle( "highlight" );
-        console.log('hi')
+$(document).keydown(function(e){
+    var span=document.getElementsByClassName("well well-lg key")
+   var id=$(span).attr('id')
+    console.log(id)
+    console.log(e.keyCode=id)
+        if(e.which=id){
+        $(span).addClass('blue')
+        console.log('hih');
+   }
+})
+
+$(document).keyup(function(e){
+    var span=document.getElementsByClassName("well well-lg key")
+   var id=$(span).attr('id')
+    console.log(id)
+    console.log(e.which=id)
+        if(e.which=id){
+        $(span).removeClass('blue')
+        console.log('hih');
+   }
 })
