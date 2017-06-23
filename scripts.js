@@ -1,21 +1,36 @@
 $( document ).ready(function() {
-    $('#keyboard-upper-container').css({'display':'none'});
+    $('#keyboard-upper-container').hide();
 });
 
 $(document).keydown(function(e){
     if(e.which==16){
-        $('#keyboard-lower-container').css({'display':'none'});
-        $('#keyboard-upper-container').css({'display':'block'})
+        $('#keyboard-lower-container').hide()
+        $('#keyboard-upper-container').show()
 }     
 })
 $(document).keyup(function(e){
     if(e.which==16){
-        $('#keyboard-upper-container').css({'display':'none'});
-        $('#keyboard-lower-container').css({'display':'block'})
+
+        $('#keyboard-upper-container').hide()
+        $('#keyboard-lower-container').show()
 }     
 })
 
-$(document).keydown(function(e){
+$(document).on('keyup', function(e){
+ $("#" + e.which).removeClass('blue')
+})
+
+$(document).on('keydown', function(e){
+ $("#" + e.which).addClass('blue')
+})
+
+
+
+/*function handleHighlight(code){
+    $('#' + code).css({'background-color':'lightblue'})
+}()*/
+
+/*$(document).keydown(function(e){
     var span=document.getElementsByClassName("well well-lg key")
    var id=$(span).attr('id')
     console.log(id)
@@ -28,11 +43,11 @@ $(document).keydown(function(e){
 
 $(document).keyup(function(e){
     var span=document.getElementsByClassName("well well-lg key")
-   var id=$(span).attr('id')
+   var id=$(this).find(span).attr('id')
     console.log(id)
     console.log(e.which=id)
         if(e.which=id){
         $(span).removeClass('blue')
         console.log('hih');
    }
-})
+})*/
