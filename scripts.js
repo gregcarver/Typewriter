@@ -12,50 +12,11 @@ var j=sentenceNum
 var letterCount=0
 var counter=letterCount++
 
-var spaghetti=sentences[j].charAt(letterCount)
-
-
-$('yellow-block').append(sentences[sentenceNum]);
-
-$(document).ready(function(){ 
-    words.innerHTML=sentences[sentenceNum].toString();
-})
-
-$(document).keypress(function(e){
-    var feedback=String.fromCharCode(e.which)
-    $('#target-letter').text(feedback)
-    if('#target-letter'==true)
-    console.log($('#feedback').addClass('.glyphicon glyphicon-ok'))
-})      
-    
-$(document).keypress(function(e){
-    console.log(spaghetti)
-    //letterCount++
-   // console.log(letterCount)
-    $('#yellow-block').animate({"left":"+=0.72em"},15);
-})
-
-    /*  if(48<=letterCount){
-        $(block).css('margin-left','-850px');
-        words.innerHTML=sentences[sentenceNum+1]
-       // letterCount++
-     } else if(97<letterCount){
-        words.innerHTML=sentences[sentenceNum+2]
-        $(block).css('margin-left','-850px');
-        letterCount++
-          }
-           else if(140<letterCount){
-        words.innerHTML=sentences[sentenceNum+2]
-        $(block).css('margin-left','-850px');
-        letterCount++
-          }
-
-
-})*/
 
 
 $( document ).ready(function() {
     $('#keyboard-upper-container').hide();
+    words.innerHTML=sentences[sentenceNum].toString();
 });
 
 $(document).keydown(function(e){
@@ -66,7 +27,6 @@ $(document).keydown(function(e){
 })
 $(document).keyup(function(e){
     if(e.which==16){
-
         $('#keyboard-upper-container').hide()
         $('#keyboard-lower-container').show()
 }     
@@ -78,6 +38,23 @@ $(document).on('keypress', function(e){
          $("#" + e.which).removeClass('blue')
     })
 })
+
+
+$('yellow-block').append(sentences[sentenceNum]);
+
+
+$(document).keypress(function(e){
+    var characters=sentences[j].charAt(counter)
+    var keystroke=String.fromCharCode(e.which)
+        console.log(keystroke)
+        console.log(characters)
+ //   if(characters=keystroke)
+ //  console.log('hi')
+    $('#target-letter').text(keystroke)
+    $('#yellow-block').animate({"left":"+=0.72em"},15);
+})      
+
+
 
 /*$(document).on('keydown', function(e){
         $("#" + e.which).addClass('blue')
@@ -112,4 +89,24 @@ $(document).keyup(function(e){
         $(span).removeClass('blue')
         console.log('hih');
    }
+})*/
+
+    //letterCount++
+   // console.log(letterCount)
+    /*  if(48<=letterCount){
+        $(block).css('margin-left','-850px');
+        words.innerHTML=sentences[sentenceNum+1]
+       // letterCount++
+     } else if(97<letterCount){
+        words.innerHTML=sentences[sentenceNum+2]
+        $(block).css('margin-left','-850px');
+        letterCount++
+          }
+           else if(140<letterCount){
+        words.innerHTML=sentences[sentenceNum+2]
+        $(block).css('margin-left','-850px');
+        letterCount++
+          }
+
+
 })*/
