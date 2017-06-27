@@ -12,9 +12,8 @@ var sentenceNum=0
 var letterCount=0
 var counter=letterCount++
 var start=new Date();
-
 var numberOfMistakes=0
-var numberOfWords=0
+var numberOfWords=54
 
 $( document ).ready(function() {
     $('#keyboard-upper-container').hide();
@@ -44,7 +43,7 @@ $(document).on('keypress', function(e){
 $(document).keypress(function(e){
     var characters=sentences[sentenceNum].charAt(letterCount)
     var keystroke=String.fromCharCode(e.which)
-    numberOfWords++
+   
 
     if(sentences[sentenceNum].length == letterCount){
         $('#sentence').empty()
@@ -69,7 +68,7 @@ $(document).keypress(function(e){
         $('#yellow-block').animate({"left":"+=0.72em"},15);
         $('#feedback').append('<span class="glyphicon glyphicon-ok" </span>')
 
-    }else if(sentenceNum==4){
+    }else if(sentenceNum==4 /*&& sentences[sentenceNum].length == letterCount*/){
         wordsPerMinute()
     }
     
@@ -83,12 +82,16 @@ $(document).keypress(function(e){
 })
 
 function wordsPerMinute(){ 
-    var end=new Date();
-    var duration=end - start;
-    var minute=duration/6000
-    alert(numberOfWords / minute -2 * numberOfMistakes)
+        console.log(numberOfWords)
+    console.log(numberOfMistakes)
+    var end = new Date() - start;
+    var minute = end / 60000;
+    var roundMin = Math.round(minute);
+    var WPM = (numberOfWords / roundMin - 2 * numberOfMistakes);
+    alert (WPM);
     confirm('Would you like to play again')
     location.reload();
+
 }
 
       
