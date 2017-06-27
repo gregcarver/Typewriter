@@ -6,16 +6,15 @@ var sentences = [
 'ten ate neite ate nee enet ite ate inet ent eate',
 'Too ato too nOt enot one totA not anot tOO aNot', 
 'oat itain oat tain nate eate tea anne inant nean',
-'itant eate anot eat nato inate eatanot tain eat', 
+'itant eate anot eat nato inate eat anot tain eat', 
 'nee ene ate ite tent tiet ent ine ene ete ene ate'];
 var sentenceNum=0
 var letterCount=0
 var counter=letterCount++
-var Date=new Date(60)
-var minutes=Date
-    
-//console.log(Date)
+var start=new Date();
 
+var numberOfMistakes=0
+var numberOfWords=0
 
 $( document ).ready(function() {
     $('#keyboard-upper-container').hide();
@@ -42,23 +41,12 @@ $(document).on('keypress', function(e){
     })
 })
 
-
-//$('#yellow-block').append(sentences[sentenceNum]);
-
-
 $(document).keypress(function(e){
-    var correct=0
-    var numberofMistakes=0
-    var numberOfWords=0
     var characters=sentences[sentenceNum].charAt(letterCount)
-        console.log(letterCount)
     var keystroke=String.fromCharCode(e.which)
     numberOfWords++
-     //   console.log(keystroke)
-     //   console.log(characters)
 
-
-    if(sentences[sentenceNum].length <= letterCount){
+    if(sentences[sentenceNum].length == letterCount){
         $('#sentence').empty()
         sentenceNum++
         letterCount=0
@@ -66,28 +54,41 @@ $(document).keypress(function(e){
         //letterCount++
         //$(letterCount).val(0);
         $('#yellow-block').css('left','1em')
-        
-    console.log('hi')
-
-}
 
     if(characters=keystroke){
         $('#feedback').empty()
         letterCount++
         $('#yellow-block').animate({"left":"+=0.72em"},15);
         $('#feedback').append('<span class="glyphicon glyphicon-ok" </span>')
-        correct++
     }
+}
+
+    if(characters==keystroke){
+        $('#feedback').empty()
+        letterCount++
+        $('#yellow-block').animate({"left":"+=0.72em"},15);
+        $('#feedback').append('<span class="glyphicon glyphicon-ok" </span>')
+
+    }else if(sentenceNum==4){
+        wordsPerMinute()
+    }
+    
     else{
         $('#feedback').empty()
         $('#feedback').append('<span class="glyphicon glyphicon-remove" </span>')
-     //   numberOfMistakes++
+        numberOfMistakes++
     }
-    $('#target-letter').text(keystroke)
+        $('#target-letter').text(keystroke)
 
+})
 
-//console.log(numberOfWords / minutes -2 * numberofMistakes)
-})      
+function wordsPerMinute(){ 
+    var end=new Date();
+    var duration=end - start;
+    var minute=duration/6000
+    alert(numberOfWords / minute -2 * numberOfMistakes)
+    confirm('Would you like to play again')
+    location.reload();
+}
 
-
-
+      
