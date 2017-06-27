@@ -8,10 +8,8 @@ var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
 'itant eate anot eat nato inate eatanot tain eat', 
 'nee ene ate ite tent tiet ent ine ene ete ene ate'];
 var sentenceNum=0
-var j=sentenceNum
-var letterCount=0
+var letterCount=-1
 var counter=letterCount++
-
 
 
 $( document ).ready(function() {
@@ -40,73 +38,29 @@ $(document).on('keypress', function(e){
 })
 
 
-$('yellow-block').append(sentences[sentenceNum]);
+//$('#yellow-block').append(sentences[sentenceNum]);
 
 
 $(document).keypress(function(e){
-    var characters=sentences[j].charAt(counter)
+    var characters=sentences[sentenceNum].charAt(letterCount)
+    
     var keystroke=String.fromCharCode(e.which)
-        console.log(keystroke)
-        console.log(characters)
- //   if(characters=keystroke)
- //  console.log('hi')
+      //  console.log(keystroke)
+      //  console.log(characters)
+    if(characters==keystroke){
+        $('#feedback').empty()
+        letterCount++
+        $('#yellow-block').animate({"left":"+=0.72em"},15);
+        $('#feedback').append('<span class="glyphicon glyphicon-ok" </span>')
+    }
+    else{
+        $('#feedback').empty()
+        $('#feedback').append('<span class="glyphicon glyphicon-remove" </span>')
+    }
+
+   
     $('#target-letter').text(keystroke)
-    $('#yellow-block').animate({"left":"+=0.72em"},15);
+    
 })      
 
 
-
-/*$(document).on('keydown', function(e){
-        $("#" + e.which).addClass('blue')
-$(document).keyup(function(){
-        $("#" + e.which).removeClass('blue')
-    })
-})
-
-
-
-/*function handleHighlight(code){
-    $('#' + code).css({'background-color':'lightblue'})
-}()*/
-
-/*$(document).keydown(function(e){
-    var span=document.getElementsByClassName("well well-lg key")
-   var id=$(span).attr('id')
-    console.log(id)
-    console.log(e.keyCode=id)
-        if(e.which=id){
-        $(span).addClass('blue')
-        console.log('hih');
-   }
-})
-
-$(document).keyup(function(e){
-    var span=document.getElementsByClassName("well well-lg key")
-   var id=$(this).find(span).attr('id')
-    console.log(id)
-    console.log(e.which=id)
-        if(e.which=id){
-        $(span).removeClass('blue')
-        console.log('hih');
-   }
-})*/
-
-    //letterCount++
-   // console.log(letterCount)
-    /*  if(48<=letterCount){
-        $(block).css('margin-left','-850px');
-        words.innerHTML=sentences[sentenceNum+1]
-       // letterCount++
-     } else if(97<letterCount){
-        words.innerHTML=sentences[sentenceNum+2]
-        $(block).css('margin-left','-850px');
-        letterCount++
-          }
-           else if(140<letterCount){
-        words.innerHTML=sentences[sentenceNum+2]
-        $(block).css('margin-left','-850px');
-        letterCount++
-          }
-
-
-})*/
