@@ -2,7 +2,8 @@ var targetLetter=document.getElementById('target-letter')
 var words=document.getElementById('sentence');
 var block=document.getElementById('yellow-block');
 var pos=$('#yellow-block').position();
-var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
+var sentences = [
+'ten ate neite ate nee enet ite ate inet ent eate',
 'Too ato too nOt enot one totA not anot tOO aNot', 
 'oat itain oat tain nate eate tea anne inant nean',
 'itant eate anot eat nato inate eatanot tain eat', 
@@ -10,10 +11,10 @@ var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
 var sentenceNum=0
 var letterCount=0
 var counter=letterCount++
-
-
+var Date=new Date(60)
+var minutes=Date
     
-
+//console.log(Date)
 
 
 $( document ).ready(function() {
@@ -53,12 +54,15 @@ $(document).keypress(function(e){
         console.log(letterCount)
     var keystroke=String.fromCharCode(e.which)
     numberOfWords++
-        console.log(keystroke)
-       console.log(characters)
+     //   console.log(keystroke)
+     //   console.log(characters)
+
+
     if(sentences[sentenceNum].length <= letterCount){
         $('#sentence').empty()
-        words.innerHTML=sentences[sentenceNum++].toString();
+        sentenceNum++
         letterCount=0
+        words.innerHTML=sentences[sentenceNum].toString();
         //letterCount++
         //$(letterCount).val(0);
         $('#yellow-block').css('left','1em')
@@ -67,7 +71,7 @@ $(document).keypress(function(e){
 
 }
 
-    if(characters==keystroke){
+    if(characters=keystroke){
         $('#feedback').empty()
         letterCount++
         $('#yellow-block').animate({"left":"+=0.72em"},15);
